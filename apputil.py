@@ -18,6 +18,8 @@ def to_binary(n):
     """Return the binary representation of an integer."""
     if n == 0:
         return "0"
+    elif n == 1:
+        return "1"
     return to_binary(n // 2) + str(n % 2)
 
 
@@ -42,13 +44,12 @@ def task_2():
     """Return total admissions by year."""
     df_bellevue["date_in"] = pd.to_datetime(df_bellevue["date_in"])
     date_in_year = df_bellevue["date_in"].dt.year
+
     return (
-        date_in_year.value_counts()
-        .reset_index()
-        .rename(
-            columns={"date_in": "year", "count": "total_admissions"}
-        )
-        .sort_values("year")
+        date_in_year.groupby(date_in_year)
+        .size()
+        .reset_index(name="total_admissions")
+        .rename(columns={"date_in": "year"})
     )
 
 
