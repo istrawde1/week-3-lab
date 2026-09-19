@@ -17,7 +17,7 @@ def fibonacci(n):
 def to_binary(n):
     """Return the binary representation of an integer."""
     if n == 0:
-        return ""
+        return "0"
     return to_binary(n // 2) + str(n % 2)
 
 
@@ -48,6 +48,7 @@ def task_2():
         .rename(
             columns={"date_in": "year", "count": "total_admissions"}
         )
+        .sort_values("year")
     )
 
 
