@@ -1,5 +1,28 @@
 import pandas as pd
 
+
+# Exercise 1
+
+def fibonacci(n):
+    """Return the nth number in the Fibonacci sequence."""
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+
+# Exercise 2
+
+def to_binary(n):
+    """Return the binary representation of an integer."""
+    if n == 0:
+        return ""
+    return to_binary(n // 2) + str(n % 2)
+
+
+# Exercise 3
+
 url = 'https://github.com/melaniewalsh/Intro-Cultural-Analytics/raw/master/book/data/bellevue_almshouse_modified.csv'
 
 df_bellevue = pd.read_csv(url)
@@ -11,7 +34,7 @@ def task_1():
         df_bellevue["gender"]
         .replace({"g": pd.NA, "h": pd.NA, "?": pd.NA})
     )
-    print("Replace invalid gender values with missing values.")
+    print("Replaced invalid gender values with missing values.")
     return list(df_bellevue.isna().sum().sort_values().index)
 
 
@@ -34,7 +57,7 @@ def task_3():
         df_bellevue["gender"]
         .replace({"g": pd.NA, "h": pd.NA, "?": pd.NA})
     )
-    print("Replace invalid gender values with missing values.")
+    print("Replaced invalid gender values with missing values.")
     return df_bellevue.groupby("gender")["age"].mean()
 
 
